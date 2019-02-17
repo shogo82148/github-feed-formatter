@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: http proxy
+
+Resources:
+  Proxy:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: psgi.handle
+      Runtime: provided
+      Timeout: 30
+      CodeUri: formatter.zip
+      Events:
+        Proxy:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+      Layers:
+        - arn:aws:lambda:us-east-1:445285296882:layer:perl-5-28-runtime:3
