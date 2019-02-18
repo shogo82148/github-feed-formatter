@@ -17,7 +17,7 @@ my $app = sub {
     my $req = Plack::Request->new($env);
     my $url = $req->request_uri;
     $url = "/$url" if $url !~ m(\A/);
-    return [404, ["Content-Type" => "text/plain"], "not found"] if $url !~ /\.atom/
+    return [404, ["Content-Type" => "text/plain"], "not found"] if $url !~ /\.atom/;
     my $feed = $api->getFeed('https://github.com' . $url) or die $api->errstr;
     my $newfeed = XML::Atom::Feed->new;
     $newfeed->id($feed->id);
@@ -29,7 +29,7 @@ my $app = sub {
     }
 
     my $res = Plack::Response->new(200);
-    $res->content_type('application/atom+xml; charset=utf-8');
+    $res->content_type('application/xml; charset=utf-8');
     $res->body($newfeed->as_xml);
     return $res->finalize;
 };
