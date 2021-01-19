@@ -7,7 +7,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: psgi.handle
-      Runtime: provided
+      Runtime: provided.al2
       Timeout: 30
       CodeUri: formatter.zip
       Events:
