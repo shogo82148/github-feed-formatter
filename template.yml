@@ -10,6 +10,7 @@ Resources:
       Runtime: provided.al2
       Timeout: 30
       CodeUri: formatter.zip
+      Architectures: [arm64]
       Events:
         Proxy:
           Type: Api
@@ -17,4 +18,4 @@ Resources:
             Path: /{proxy+}
             Method: any
       Layers:
-        - arn:aws:lambda:us-east-1:445285296882:layer:perl-5-32-runtime-al2:2
+        - arn:aws:lambda:us-east-1:445285296882:layer:perl-5-38-runtime-al2-arm64:2

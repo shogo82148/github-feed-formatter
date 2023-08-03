@@ -1,6 +1,6 @@
 build: formatter.zip
 formatter.zip: psgi.pl cpanfile formatter.psgi
-	docker run --rm -v $(PWD):/var/task shogo82148/p5-aws-lambda:build-5.32.al2 \
+	docker run --platform linux/arm64 --rm -v $(PWD):/var/task shogo82148/p5-aws-lambda:build-5.38.al2 \
 		cpanm --notest -L extlocal --installdeps .
 	zip -r formatter.zip . -x '*.zip' -x '.*' -x 'local/'
 
